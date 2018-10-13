@@ -32,7 +32,7 @@ namespace NoRecoil
             MoveMouseThread.Start();
             UpdateThread.Start();
             refreshCfgs();
-
+            
             if (Directory.Exists(_configLoc)) { }
             else
             {
@@ -40,7 +40,7 @@ namespace NoRecoil
             }
         }
 
-        void _MoveMouse()
+        private void _MoveMouse()
         {
             int i = 0;
             while(appRunning)
@@ -64,7 +64,7 @@ namespace NoRecoil
             }
         }
 
-        void _Update()
+        private void _Update()
         {
             while(appRunning)
             {
@@ -128,6 +128,7 @@ namespace NoRecoil
         private void gui_FormClosing(object sender, FormClosingEventArgs e)
         {
             appRunning = false;
+            Application.Exit();
         }
 
         private void btnAdd_Click(object sender, EventArgs e)
@@ -146,38 +147,26 @@ namespace NoRecoil
 
         private void btnSave_Click(object sender, EventArgs e)
         {
-            StreamWriter sw = new StreamWriter(_configLoc + "\\" + cbConfigs.Text);
-            string toWrite = tbStep.Value.ToString() + ":" + tbDelay.Value.ToString() + ":" + tbIncrease.Value.ToString() + ":" + tbMax.Value.ToString();
-            sw.WriteLine(toWrite);
-            sw.Close();
+            int[] settings =
+            {
+                tbStep.Value,
+                tbDelay.Value,
+                tbIncrease.Value,
+                tbMax.Value,
+            };
+            MagicMouse.SaveIntConfig(_configLoc + "\\" + cbConfigs.Text, settings);
         }
 
         private void btnLoad_Click(object sender, EventArgs e)
         {
-            StreamReader sr = new StreamReader(_configLoc + "\\" + cbConfigs.Text);
-            string buffer = sr.ReadLine();
-            if (buffer == null)
-            {
-                MessageBox.Show("Config file Emty.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
-            }
-            else
-            {
-                try
-                {
-                    string[] settings = buffer.Split(':');
-                    tbStep.Value = Int32.Parse(settings[0]);
-                    tbDelay.Value = Int32.Parse(settings[1]);
-                    tbIncrease.Value = Int32.Parse(settings[2]);
-                    tbMax.Value = Int32.Parse(settings[3]);
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show(ex.Message);
-                }
-            }
+            int[] settings = MagicMouse.LoadIntConfig(_configLoc + "\\" + cbConfigs.Text);
+            tbStep.Value = settings[0];
+            tbDelay.Value = settings[1];
+            tbIncrease.Value = settings[2];
+            tbMax.Value = settings[3];
         }
 
-        void refreshCfgs()
+        private void refreshCfgs()
         {
             DirectoryInfo d = new DirectoryInfo(_configLoc);
             FileInfo[] Files = d.GetFiles();
@@ -188,6 +177,11 @@ namespace NoRecoil
             }
             if (cbConfigs.Items.Count > 0)
                 cbConfigs.SelectedIndex = 0;
+        }
+
+        private void pbRefresh_Click(object sender, EventArgs e)
+        {
+            refreshCfgs();
         }
     }
 }

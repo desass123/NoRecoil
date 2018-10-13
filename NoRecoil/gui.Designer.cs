@@ -17,7 +17,7 @@
             {
                 components.Dispose();
             }
-            base.Dispose(disposing);
+            //base.Dispose(disposing);
         }
 
         #region Vom Windows Form-Designer generierter Code
@@ -44,10 +44,12 @@
             this.btnAdd = new System.Windows.Forms.Button();
             this.txtCFG = new System.Windows.Forms.TextBox();
             this.lbHidden = new System.Windows.Forms.Label();
+            this.pbRefresh = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.tbStep)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbDelay)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbIncrease)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbMax)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbRefresh)).BeginInit();
             this.SuspendLayout();
             // 
             // lblStep
@@ -201,11 +203,24 @@
             this.lbHidden.TabIndex = 11;
             this.lbHidden.Text = "Hide[DELETE]";
             // 
+            // pbRefresh
+            // 
+            this.pbRefresh.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.pbRefresh.Image = global::NoRecoil.Properties.Resources.icon_refresh_128;
+            this.pbRefresh.Location = new System.Drawing.Point(148, 274);
+            this.pbRefresh.Name = "pbRefresh";
+            this.pbRefresh.Size = new System.Drawing.Size(30, 30);
+            this.pbRefresh.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pbRefresh.TabIndex = 12;
+            this.pbRefresh.TabStop = false;
+            this.pbRefresh.Click += new System.EventHandler(this.pbRefresh_Click);
+            // 
             // gui
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(332, 303);
+            this.Controls.Add(this.pbRefresh);
             this.Controls.Add(this.lbHidden);
             this.Controls.Add(this.txtCFG);
             this.Controls.Add(this.btnAdd);
@@ -234,6 +249,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.tbDelay)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbIncrease)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbMax)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbRefresh)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -257,6 +273,7 @@
         private System.Windows.Forms.Button btnAdd;
         private System.Windows.Forms.TextBox txtCFG;
         private System.Windows.Forms.Label lbHidden;
+        private System.Windows.Forms.PictureBox pbRefresh;
     }
 }
 

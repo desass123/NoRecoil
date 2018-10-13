@@ -7,3 +7,4 @@ C:\Users\Finn\source\repos\NoRecoil\NoRecoil\obj\Release\NoRecoil.csproj.Generat
 C:\Users\Finn\source\repos\NoRecoil\NoRecoil\obj\Release\NoRecoil.csproj.CoreCompileInputs.cache
 C:\Users\Finn\source\repos\NoRecoil\NoRecoil\obj\Release\NoRecoil.exe
 C:\Users\Finn\source\repos\NoRecoil\NoRecoil\obj\Release\NoRecoil.pdb
+C:\Users\Finn\source\repos\NoRecoil\NoRecoil\obj\Release\NoRecoil.csprojResolveAssemblyReference.cache
