@@ -1,0 +1,10 @@
+C:\Users\Finn\source\repos\NoRecoil\NoRecoil\bin\Debug\NoRecoil.exe.config
+C:\Users\Finn\source\repos\NoRecoil\NoRecoil\bin\Debug\NoRecoil.exe
+C:\Users\Finn\source\repos\NoRecoil\NoRecoil\bin\Debug\NoRecoil.pdb
+C:\Users\Finn\source\repos\NoRecoil\NoRecoil\obj\Debug\NoRecoil.csprojResolveAssemblyReference.cache
+C:\Users\Finn\source\repos\NoRecoil\NoRecoil\obj\Debug\NoRecoil.gui.resources
+C:\Users\Finn\source\repos\NoRecoil\NoRecoil\obj\Debug\NoRecoil.Properties.Resources.resources
+C:\Users\Finn\source\repos\NoRecoil\NoRecoil\obj\Debug\NoRecoil.csproj.GenerateResource.Cache
+C:\Users\Finn\source\repos\NoRecoil\NoRecoil\obj\Debug\NoRecoil.csproj.CoreCompileInputs.cache
+C:\Users\Finn\source\repos\NoRecoil\NoRecoil\obj\Debug\NoRecoil.exe
+C:\Users\Finn\source\repos\NoRecoil\NoRecoil\obj\Debug\NoRecoil.pdb
