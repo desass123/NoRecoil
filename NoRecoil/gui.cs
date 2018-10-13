@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading;
 using System.Windows.Forms;
 using System.IO;
+using Corale;
 
 namespace NoRecoil
 {
@@ -16,8 +17,10 @@ namespace NoRecoil
 
         bool appRunning = true;
         bool _ENABLED = false;
-        bool _HIDDEN = false;
         string _configLoc = "C:\\Users\\" + Environment.UserName.ToString() + "\\AppData\\Roaming\\MagicMouse";
+        byte _R = 0;
+        byte _G = 255;
+        byte _B = 255;
 
         public gui()
         {
@@ -73,20 +76,23 @@ namespace NoRecoil
                 lblIncrease.Text = "Increase[" + tbIncrease.Value.ToString() + "]:";
                 lblMax.Text = "Max Inc.[" + tbMax.Value.ToString() + "]:";
 
-                if (MagicMouse.bGetAsyncKeyState(Keys.F2))
-                {
-                    _ENABLED = !_ENABLED;
-                    Thread.Sleep(100);
-                }
+                bool buffer = true;
 
-                if (MagicMouse.bGetAsyncKeyState(Keys.Delete))
+                while (MagicMouse.bGetAsyncKeyState(Keys.F2))
                 {
-                    _HIDDEN = !_HIDDEN;
-                    Thread.Sleep(100);
+                    if (buffer)
+                    {
+                        _ENABLED = !_ENABLED;
+                        buffer = false;
+                    }
                 }
 
                 if (_ENABLED)
                 {
+                    if (MagicMouse._CHROMA_INITIALIZED && cbChroma.Checked)
+                    {
+                        MagicMouse.StateEnabled();
+                    }
                     lblState.Text = "ENABLED [F2]";
                     lblState.ForeColor = Color.Green;
                     tbStep.Enabled = false;
@@ -96,6 +102,10 @@ namespace NoRecoil
                 }
                 else
                 {
+                    if (MagicMouse._CHROMA_INITIALIZED && cbChroma.Checked)
+                    {
+                        MagicMouse.StateDisabled();
+                    }
                     lblState.Text = "DISABLED [F2]";
                     lblState.ForeColor = Color.Red;
                     tbStep.Enabled = true;
@@ -104,24 +114,8 @@ namespace NoRecoil
                     tbMax.Enabled = true;
                 }
 
-                if (_HIDDEN)
-                {
-                    try
-                    {
-                        this.Hide();
-                    }
-                    catch{}
-                }
-                else
-                {
-                    try
-                    {
-                        this.Show();
-                    }
-                    catch { }
-                }
-
                 Thread.Sleep(1);
+                buffer = true;
             }
         }
 
@@ -182,6 +176,14 @@ namespace NoRecoil
         private void pbRefresh_Click(object sender, EventArgs e)
         {
             refreshCfgs();
+        }
+
+        private void cbChroma_CheckedChanged(object sender, EventArgs e)
+        {
+            if (cbChroma.Checked)
+            {
+                MagicMouse.InitializeChroma();
+            }
         }
     }
 }

@@ -43,8 +43,8 @@
             this.btnDelete = new System.Windows.Forms.Button();
             this.btnAdd = new System.Windows.Forms.Button();
             this.txtCFG = new System.Windows.Forms.TextBox();
-            this.lbHidden = new System.Windows.Forms.Label();
             this.pbRefresh = new System.Windows.Forms.PictureBox();
+            this.cbChroma = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.tbStep)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbDelay)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbIncrease)).BeginInit();
@@ -194,15 +194,6 @@
             this.txtCFG.Size = new System.Drawing.Size(146, 23);
             this.txtCFG.TabIndex = 10;
             // 
-            // lbHidden
-            // 
-            this.lbHidden.AutoSize = true;
-            this.lbHidden.Location = new System.Drawing.Point(229, 279);
-            this.lbHidden.Name = "lbHidden";
-            this.lbHidden.Size = new System.Drawing.Size(91, 15);
-            this.lbHidden.TabIndex = 11;
-            this.lbHidden.Text = "Hide[DELETE]";
-            // 
             // pbRefresh
             // 
             this.pbRefresh.Cursor = System.Windows.Forms.Cursors.Hand;
@@ -215,13 +206,24 @@
             this.pbRefresh.TabStop = false;
             this.pbRefresh.Click += new System.EventHandler(this.pbRefresh_Click);
             // 
+            // cbChroma
+            // 
+            this.cbChroma.AutoSize = true;
+            this.cbChroma.Location = new System.Drawing.Point(210, 278);
+            this.cbChroma.Name = "cbChroma";
+            this.cbChroma.Size = new System.Drawing.Size(110, 19);
+            this.cbChroma.TabIndex = 13;
+            this.cbChroma.Text = "Razer Chroma";
+            this.cbChroma.UseVisualStyleBackColor = true;
+            this.cbChroma.CheckedChanged += new System.EventHandler(this.cbChroma_CheckedChanged);
+            // 
             // gui
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(332, 303);
+            this.Controls.Add(this.cbChroma);
             this.Controls.Add(this.pbRefresh);
-            this.Controls.Add(this.lbHidden);
             this.Controls.Add(this.txtCFG);
             this.Controls.Add(this.btnAdd);
             this.Controls.Add(this.btnDelete);
@@ -272,8 +274,8 @@
         private System.Windows.Forms.Button btnDelete;
         private System.Windows.Forms.Button btnAdd;
         private System.Windows.Forms.TextBox txtCFG;
-        private System.Windows.Forms.Label lbHidden;
         private System.Windows.Forms.PictureBox pbRefresh;
+        private System.Windows.Forms.CheckBox cbChroma;
     }
 }
 

@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using System.ComponentModel;
 using System.IO;
 using System.Windows.Forms;
+using Corale;
 
 namespace NoRecoil
 {
@@ -17,6 +18,11 @@ namespace NoRecoil
         static extern short GetAsyncKeyState(System.Windows.Forms.Keys vKey);
         [DllImport("user32.dll")]
         static extern void mouse_event(int dwFlags, int dx, int dy, int dwData, int dwExtraInfo);
+
+        public static Corale.Colore.Core.IChroma iChroma;
+        public static Corale.Colore.Razer.Mouse.Effects.Static eGreen;
+        public static Corale.Colore.Razer.Mouse.Effects.Static eRed;
+        public static bool _CHROMA_INITIALIZED = false;
 
         public static int _ScreenWidth { get; } = System.Windows.Forms.Screen.PrimaryScreen.Bounds.Width;
         public static int _ScreenHeight { get; } = System.Windows.Forms.Screen.PrimaryScreen.Bounds.Height;
@@ -68,7 +74,6 @@ namespace NoRecoil
         {
             mouse_event(MOUSEEVENTF_MOVE, xDelta, yDelta, 0, 0);
         }
-
         public static void SaveIntConfig(string FilePath, int[]Settings)
         {
             string ToWrite = "";
@@ -89,5 +94,28 @@ namespace NoRecoil
             sw.WriteLine(ToWrite);
             sw.Close();
         }
+        public static void InitializeChroma()
+        {
+            try
+            {
+                iChroma = Corale.Colore.Core.Chroma.Instance;
+                eRed = new Corale.Colore.Razer.Mouse.Effects.Static(Corale.Colore.Razer.Mouse.Led.All, Corale.Colore.Core.Color.Red);
+                eGreen = new Corale.Colore.Razer.Mouse.Effects.Static(Corale.Colore.Razer.Mouse.Led.All, Corale.Colore.Core.Color.Green);
+                _CHROMA_INITIALIZED = true;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error: " + ex.Message, "Error");
+            }
+        }
+        public static void StateEnabled()
+        {
+            iChroma.Mouse.SetStatic(eGreen);
+        }
+        public static void StateDisabled()
+        {
+            iChroma.Mouse.SetStatic(eRed);
+        }
+
     }
 }
